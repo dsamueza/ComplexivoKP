@@ -10,50 +10,48 @@
 
     <div class="card">
         <div class="card-body register-card-body">
-            <p class="login-box-msg">Register a new membership</p>
+            <p class="login-box-msg">Registrar nuevo usuario</p>
       
                 <form asp-controller="Login" asp-action="RegistroUsuario" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
                     <div class="form-group has-feedback">
-                        <input type="text" name="CEDULA" class="form-control" placeholder="Cédula">
-                        <span class="fa fa-user form-control-feedback"></span>
-                 
+                        @Html.EditorFor(model => model.CEDULA, new { htmlAttributes = new { @class = "form-control", placeholder = "Cédula" } })
+                        <span class="fa fa-id-card form-control-feedback"></span>
                         @Html.ValidationMessageFor(model => model.CEDULA, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" asp-for="NOMBRE" class="form-control" placeholder="Nombres">
+                        @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control", placeholder = "Nombres" } })
                         <span class="fa fa-user form-control-feedback"></span>
-                        <span asp-validation-for="NOMBRE" class="text-danger"></span>
-
+                        @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" asp-for="APELLIDO" class="form-control" placeholder="Apellidos">
+                        @Html.EditorFor(model => model.APELLIDO, new { htmlAttributes = new { @class = "form-control", placeholder = "Apellidos" } })
                         <span class="fa fa-user form-control-feedback"></span>
-                        <span asp-validation-for="APELLIDO" class="text-danger"></span>
+                        @Html.ValidationMessageFor(model => model.APELLIDO, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" asp-for="fechaNacimiento" class="form-control" placeholder="Fecha de nacimiento">
-                        <span class="fa fa-user form-control-feedback"></span>
-                        <span asp-validation-for="fechaNacimiento" class="text-danger"></span>
+                        @Html.EditorFor(model => model.fechaNacimiento, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de nacimiento" } })
+                        <span class="fa fa-calendar form-control-feedback"></span>
+                        @Html.ValidationMessageFor(model => model.fechaNacimiento, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group has-feedback">
                         <div class="form-group has-feedback">
-                            <input type="text" asp-for="USUARIO" class="form-control" placeholder="Correo electronico">
-                            <span class="fa fa-user form-control-feedback"></span>
-                            <span asp-validation-for="USUARIO" class="text-danger"></span>
+                            @Html.EditorFor(model => model.USUARIO, new { htmlAttributes = new { @class = "form-control", placeholder = "Correo electronico" } })
+                            <span class="fa fa-envelope form-control-feedback"></span>
+                            @Html.ValidationMessageFor(model => model.USUARIO, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group has-feedback">
                         <div class="form-group has-feedback">
-                            <input type="text" asp-for="PassUsuario" class="form-control" placeholder="Contraseña">
-                            <span class="fa fa-user form-control-feedback"></span>
-                            <span asp-validation-for="PassUsuario" class="text-danger"></span>
+                            @Html.EditorFor(model => model.PassUsuario, new { htmlAttributes = new { @class="form-control", placeholder="Contraseña" } })
+                            <span class="fa fa-unlock-alt form-control-feedback"></span>
+                            @Html.ValidationMessageFor(model => model.PassUsuario, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group has-feedback">
                         <div class="form-group has-feedback">
-                            <input type="text" asp-for="PassUsuarionew" class="form-control" placeholder="Confirme la contraseña">
-                            <span class="fa fa-user form-control-feedback"></span>
-                            <span asp-validation-for="PassUsuarionew" class="text-danger"></span>
+                            @Html.EditorFor(model => model.PassUsuarionew, new { htmlAttributes = new { @class = "form-control", placeholder = "Confirme la contraseña" } })
+                            <span class="fa fa-unlock-alt form-control-feedback"></span>
+                            @Html.ValidationMessageFor(model => model.PassUsuarionew, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="row">

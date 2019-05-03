@@ -37,6 +37,7 @@ namespace KatherinePorras_FINBANK.Modelo
         [Compare("PassUsuario")]
         [DisplayName("Repita la Contraseña")]
         public String PassUsuarionew { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime fechaNacimiento  { get; set; }

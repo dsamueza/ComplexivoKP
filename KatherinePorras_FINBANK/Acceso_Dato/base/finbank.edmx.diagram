@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1e911c33a4934a749ec7fa133ff74b52" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="KP_finbankModel.SFB_AMORTIZACION" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KP_finbankModel.SFB_INTERES" Width="1.5" PointX="5.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KP_finbankModel.SFB_SIMULACION" Width="1.5" PointX="5.875" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KP_finbankModel.SFB_SOLICITUD" Width="1.5" PointX="0.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KP_finbankModel.SFB_SUCURSAL" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KP_finbankModel.SFB_USUARIO" Width="1.5" PointX="11.25" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="KP_finbankModel.FK_SFB_SIMU_RELATIONS_SFB_AMOR" ManuallyRouted="false" />
+        <AssociationConnector Association="KP_finbankModel.FK_SFB_SIMU_RELATIONS_SFB_INTE" ManuallyRouted="false" />
+        <AssociationConnector Association="KP_finbankModel.FK_SFB_SIMU_RELATIONS_SFB_SOLI" ManuallyRouted="false" />
+        <AssociationConnector Association="KP_finbankModel.FK_SFB_SIMU_RELATIONS_SFB_SUCU" ManuallyRouted="false" />
+        <AssociationConnector Association="KP_finbankModel.FK_SFB_SIMU_RELATIONS_SFB_USUA" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

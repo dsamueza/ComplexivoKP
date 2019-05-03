@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KP_finbankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SFB_AMORTIZACION">
+          <Key>
+            <PropertyRef Name="SFB_AMO_ID" />
+          </Key>
+          <Property Name="SFB_AMO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SFB_AMO_DESCRIPCION" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SFB_INTERES">
+          <Key>
+            <PropertyRef Name="SFB_INT_ID" />
+          </Key>
+          <Property Name="SFB_INT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SFB_INT_DESCRIPCION" Type="varchar" MaxLength="20" />
+          <Property Name="SFB_INT_VALOR" Type="float" />
+        </EntityType>
+        <EntityType Name="SFB_SIMULACION">
+          <Key>
+            <PropertyRef Name="SFB_SIM_ID" />
+          </Key>
+          <Property Name="SFB_SIM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SFB_AMO_ID" Type="int" />
+          <Property Name="SFB_SOL_ID" Type="int" />
+          <Property Name="SFB_SUC_ID" Type="int" />
+          <Property Name="SFB_INT_ID" Type="int" />
+          <Property Name="SFB_USU_ID" Type="int" />
+          <Property Name="SFB_SIM_MONSOLICITADO" Type="float" />
+          <Property Name="SFB_SIM_PLAMESES" Type="float" />
+          <Property Name="SFB_SIM_INTANUAL" Type="float" />
+          <Property Name="SFB_SIM_CUAMENSUAL" Type="float" />
+          <Property Name="SFB_SIM_PAGTOTAL" Type="float" />
+        </EntityType>
+        <EntityType Name="SFB_SOLICITUD">
+          <Key>
+            <PropertyRef Name="SFB_SOL_ID" />
+          </Key>
+          <Property Name="SFB_SOL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SFB_SUCURSAL">
+          <Key>
+            <PropertyRef Name="SFB_SUC_ID" />
+          </Key>
+          <Property Name="SFB_SUC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SFB_SUC_DESCRIPCION" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="SFB_USUARIO">
+          <Key>
+            <PropertyRef Name="SFB_USU_ID" />
+          </Key>
+          <Property Name="SFB_USU_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SFB_USU_CEDULA" Type="varchar" MaxLength="10" />
+          <Property Name="SFB_USU_NOMBRE" Type="varchar" MaxLength="50" />
+          <Property Name="SFB_USU_APELLIDO" Type="varchar" MaxLength="50" />
+          <Property Name="SFB_USU_EDAD" Type="datetime" />
+          <Property Name="SFB_USU_USUARIO" Type="varchar" MaxLength="20" />
+          <Property Name="SFB_USU_PASSWORD" Type="varchar" MaxLength="1" />
+          <Property Name="SFB_USU_ESTADO" Type="char" MaxLength="1" />
+        </EntityType>
+        <Association Name="FK_SFB_SIMU_RELATIONS_SFB_AMOR">
+          <End Role="SFB_AMORTIZACION" Type="Self.SFB_AMORTIZACION" Multiplicity="0..1" />
+          <End Role="SFB_SIMULACION" Type="Self.SFB_SIMULACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SFB_AMORTIZACION">
+              <PropertyRef Name="SFB_AMO_ID" />
+            </Principal>
+            <Dependent Role="SFB_SIMULACION">
+              <PropertyRef Name="SFB_AMO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SFB_SIMU_RELATIONS_SFB_INTE">
+          <End Role="SFB_INTERES" Type="Self.SFB_INTERES" Multiplicity="0..1" />
+          <End Role="SFB_SIMULACION" Type="Self.SFB_SIMULACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SFB_INTERES">
+              <PropertyRef Name="SFB_INT_ID" />
+            </Principal>
+            <Dependent Role="SFB_SIMULACION">
+              <PropertyRef Name="SFB_INT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SFB_SIMU_RELATIONS_SFB_SOLI">
+          <End Role="SFB_SOLICITUD" Type="Self.SFB_SOLICITUD" Multiplicity="0..1" />
+          <End Role="SFB_SIMULACION" Type="Self.SFB_SIMULACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SFB_SOLICITUD">
+              <PropertyRef Name="SFB_SOL_ID" />
+            </Principal>
+            <Dependent Role="SFB_SIMULACION">
+              <PropertyRef Name="SFB_SOL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SFB_SIMU_RELATIONS_SFB_SUCU">
+          <End Role="SFB_SUCURSAL" Type="Self.SFB_SUCURSAL" Multiplicity="0..1" />
+          <End Role="SFB_SIMULACION" Type="Self.SFB_SIMULACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SFB_SUCURSAL">
+              <PropertyRef Name="SFB_SUC_ID" />
+            </Principal>
+            <Dependent Role="SFB_SIMULACION">
+              <PropertyRef Name="SFB_SUC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SFB_SIMU_RELATIONS_SFB_USUA">
+          <End Role="SFB_USUARIO" Type="Self.SFB_USUARIO" Multiplicity="0..1" />
+          <End Role="SFB_SIMULACION" Type="Self.SFB_SIMULACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SFB_USUARIO">
+              <PropertyRef Name="SFB_USU_ID" />
+            </Principal>
+            <Dependent Role="SFB_SIMULACION">
+              <PropertyRef Name="SFB_USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KP_finbankModelStoreContainer">
+          <EntitySet Name="SFB_AMORTIZACION" EntityType="Self.SFB_AMORTIZACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SFB_INTERES" EntityType="Self.SFB_INTERES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SFB_SIMULACION" EntityType="Self.SFB_SIMULACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SFB_SOLICITUD" EntityType="Self.SFB_SOLICITUD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SFB_SUCURSAL" EntityType="Self.SFB_SUCURSAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SFB_USUARIO" EntityType="Self.SFB_USUARIO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SFB_SIMU_RELATIONS_SFB_AMOR" Association="Self.FK_SFB_SIMU_RELATIONS_SFB_AMOR">
+            <End Role="SFB_AMORTIZACION" EntitySet="SFB_AMORTIZACION" />
+            <End Role="SFB_SIMULACION" EntitySet="SFB_SIMULACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SFB_SIMU_RELATIONS_SFB_INTE" Association="Self.FK_SFB_SIMU_RELATIONS_SFB_INTE">
+            <End Role="SFB_INTERES" EntitySet="SFB_INTERES" />
+            <End Role="SFB_SIMULACION" EntitySet="SFB_SIMULACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SFB_SIMU_RELATIONS_SFB_SOLI" Association="Self.FK_SFB_SIMU_RELATIONS_SFB_SOLI">
+            <End Role="SFB_SOLICITUD" EntitySet="SFB_SOLICITUD" />
+            <End Role="SFB_SIMULACION" EntitySet="SFB_SIMULACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SFB_SIMU_RELATIONS_SFB_SUCU" Association="Self.FK_SFB_SIMU_RELATIONS_SFB_SUCU">
+            <End Role="SFB_SUCURSAL" EntitySet="SFB_SUCURSAL" />
+            <End Role="SFB_SIMULACION" EntitySet="SFB_SIMULACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SFB_SIMU_RELATIONS_SFB_USUA" Association="Self.FK_SFB_SIMU_RELATIONS_SFB_USUA">
+            <End Role="SFB_USUARIO" EntitySet="SFB_USUARIO" />
+            <End Role="SFB_SIMULACION" EntitySet="SFB_SIMULACION" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KP_finbankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="SFB_AMORTIZACION">
+          <Key>
+            <PropertyRef Name="SFB_AMO_ID" />
+          </Key>
+          <Property Name="SFB_AMO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SFB_AMO_DESCRIPCION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SFB_SIMULACION" Relationship="Self.FK_SFB_SIMU_RELATIONS_SFB_AMOR" FromRole="SFB_AMORTIZACION" ToRole="SFB_SIMULACION" />
+        </EntityType>
+        <EntityType Name="SFB_INTERES">
+          <Key>
+            <PropertyRef Name="SFB_INT_ID" />
+          </Key>
+          <Property Name="SFB_INT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SFB_INT_DESCRIPCION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SFB_INT_VALOR" Type="Double" />
+          <NavigationProperty Name="SFB_SIMULACION" Relationship="Self.FK_SFB_SIMU_RELATIONS_SFB_INTE" FromRole="SFB_INTERES" ToRole="SFB_SIMULACION" />
+        </EntityType>
+        <EntityType Name="SFB_SIMULACION">
+          <Key>
+            <PropertyRef Name="SFB_SIM_ID" />
+          </Key>
+          <Property Name="SFB_SIM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SFB_AMO_ID" Type="Int32" />
+          <Property Name="SFB_SOL_ID" Type="Int32" />
+          <Property Name="SFB_SUC_ID" Type="Int32" />
+          <Property Name="SFB_INT_ID" Type="Int32" />
+          <Property Name="SFB_USU_ID" Type="Int32" />
+          <Property Name="SFB_SIM_MONSOLICITADO" Type="Double" />
+          <Property Name="SFB_SIM_PLAMESES" Type="Double" />
+          <Property Name="SFB_SIM_INTANUAL" Type="Double" />
+          <Property Name="SFB_SIM_CUAMENSUAL" Type="Double" />
+          <Property Name="SFB_SIM_PAGTOTAL" Type="Double" />
+          <NavigationProperty Name="SFB_AMORTIZACION" Relationship="Self.FK_SFB_SIMU_RELATIONS_SFB_AMOR" FromRole="SFB_SIMULACION" ToRole="SFB_AMORTIZACION" />
+          <NavigationProperty Name="SFB_INTERES" Relationship="Self.FK_SFB_SIMU_RELATIONS_SFB_INTE" FromRole="SFB_SIMULACION" ToRole="SFB_INTERES" />
+          <NavigationProperty Name="SFB_SOLICITUD" Relationship="Self.FK_SFB_SIMU_RELATIONS_SFB_SOLI" FromRole="SFB_SIMULACION" ToRole="SFB_SOLICITUD" />
+          <NavigationProperty Name="SFB_SUCURSAL" Relationship="Self.FK_SFB_SIMU_RELATIONS_SFB_SUCU" FromRole="SFB_SIMULACION" ToRole="SFB_SUCURSAL" />
+          <NavigationProperty Name="SFB_USUARIO" Relationship="Self.FK_SFB_SIMU_RELATIONS_SFB_USUA" FromRole="SFB_SIMULACION" ToRole="SFB_USUARIO" />
+        </EntityType>
+        <EntityType Name="SFB_SOLICITUD">
+          <Key>
+            <PropertyRef Name="SFB_SOL_ID" />
+          </Key>
+          <Property Name="SFB_SOL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="SFB_SIMULACION" Relationship="Self.FK_SFB_SIMU_RELATIONS_SFB_SOLI" FromRole="SFB_SOLICITUD" ToRole="SFB_SIMULACION" />
+        </EntityType>
+        <EntityType Name="SFB_SUCURSAL">
+          <Key>
+            <PropertyRef Name="SFB_SUC_ID" />
+          </Key>
+          <Property Name="SFB_SUC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SFB_SUC_DESCRIPCION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SFB_SIMULACION" Relationship="Self.FK_SFB_SIMU_RELATIONS_SFB_SUCU" FromRole="SFB_SUCURSAL" ToRole="SFB_SIMULACION" />
+        </EntityType>
+        <EntityType Name="SFB_USUARIO">
+          <Key>
+            <PropertyRef Name="SFB_USU_ID" />
+          </Key>
+          <Property Name="SFB_USU_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SFB_USU_CEDULA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SFB_USU_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SFB_USU_APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SFB_USU_EDAD" Type="DateTime" Precision="3" />
+          <Property Name="SFB_USU_USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SFB_USU_PASSWORD" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SFB_USU_ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="SFB_SIMULACION" Relationship="Self.FK_SFB_SIMU_RELATIONS_SFB_USUA" FromRole="SFB_USUARIO" ToRole="SFB_SIMULACION" />
+        </EntityType>
+        <Association Name="FK_SFB_SIMU_RELATIONS_SFB_AMOR">
+          <End Role="SFB_AMORTIZACION" Type="Self.SFB_AMORTIZACION" Multiplicity="0..1" />
+          <End Role="SFB_SIMULACION" Type="Self.SFB_SIMULACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SFB_AMORTIZACION">
+              <PropertyRef Name="SFB_AMO_ID" />
+            </Principal>
+            <Dependent Role="SFB_SIMULACION">
+              <PropertyRef Name="SFB_AMO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SFB_SIMU_RELATIONS_SFB_INTE">
+          <End Role="SFB_INTERES" Type="Self.SFB_INTERES" Multiplicity="0..1" />
+          <End Role="SFB_SIMULACION" Type="Self.SFB_SIMULACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SFB_INTERES">
+              <PropertyRef Name="SFB_INT_ID" />
+            </Principal>
+            <Dependent Role="SFB_SIMULACION">
+              <PropertyRef Name="SFB_INT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SFB_SIMU_RELATIONS_SFB_SOLI">
+          <End Role="SFB_SOLICITUD" Type="Self.SFB_SOLICITUD" Multiplicity="0..1" />
+          <End Role="SFB_SIMULACION" Type="Self.SFB_SIMULACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SFB_SOLICITUD">
+              <PropertyRef Name="SFB_SOL_ID" />
+            </Principal>
+            <Dependent Role="SFB_SIMULACION">
+              <PropertyRef Name="SFB_SOL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SFB_SIMU_RELATIONS_SFB_SUCU">
+          <End Role="SFB_SUCURSAL" Type="Self.SFB_SUCURSAL" Multiplicity="0..1" />
+          <End Role="SFB_SIMULACION" Type="Self.SFB_SIMULACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SFB_SUCURSAL">
+              <PropertyRef Name="SFB_SUC_ID" />
+            </Principal>
+            <Dependent Role="SFB_SIMULACION">
+              <PropertyRef Name="SFB_SUC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SFB_SIMU_RELATIONS_SFB_USUA">
+          <End Role="SFB_USUARIO" Type="Self.SFB_USUARIO" Multiplicity="0..1" />
+          <End Role="SFB_SIMULACION" Type="Self.SFB_SIMULACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SFB_USUARIO">
+              <PropertyRef Name="SFB_USU_ID" />
+            </Principal>
+            <Dependent Role="SFB_SIMULACION">
+              <PropertyRef Name="SFB_USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KP_finbankEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SFB_AMORTIZACION" EntityType="Self.SFB_AMORTIZACION" />
+          <EntitySet Name="SFB_INTERES" EntityType="Self.SFB_INTERES" />
+          <EntitySet Name="SFB_SIMULACION" EntityType="Self.SFB_SIMULACION" />
+          <EntitySet Name="SFB_SOLICITUD" EntityType="Self.SFB_SOLICITUD" />
+          <EntitySet Name="SFB_SUCURSAL" EntityType="Self.SFB_SUCURSAL" />
+          <EntitySet Name="SFB_USUARIO" EntityType="Self.SFB_USUARIO" />
+          <AssociationSet Name="FK_SFB_SIMU_RELATIONS_SFB_AMOR" Association="Self.FK_SFB_SIMU_RELATIONS_SFB_AMOR">
+            <End Role="SFB_AMORTIZACION" EntitySet="SFB_AMORTIZACION" />
+            <End Role="SFB_SIMULACION" EntitySet="SFB_SIMULACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SFB_SIMU_RELATIONS_SFB_INTE" Association="Self.FK_SFB_SIMU_RELATIONS_SFB_INTE">
+            <End Role="SFB_INTERES" EntitySet="SFB_INTERES" />
+            <End Role="SFB_SIMULACION" EntitySet="SFB_SIMULACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SFB_SIMU_RELATIONS_SFB_SOLI" Association="Self.FK_SFB_SIMU_RELATIONS_SFB_SOLI">
+            <End Role="SFB_SOLICITUD" EntitySet="SFB_SOLICITUD" />
+            <End Role="SFB_SIMULACION" EntitySet="SFB_SIMULACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SFB_SIMU_RELATIONS_SFB_SUCU" Association="Self.FK_SFB_SIMU_RELATIONS_SFB_SUCU">
+            <End Role="SFB_SUCURSAL" EntitySet="SFB_SUCURSAL" />
+            <End Role="SFB_SIMULACION" EntitySet="SFB_SIMULACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SFB_SIMU_RELATIONS_SFB_USUA" Association="Self.FK_SFB_SIMU_RELATIONS_SFB_USUA">
+            <End Role="SFB_USUARIO" EntitySet="SFB_USUARIO" />
+            <End Role="SFB_SIMULACION" EntitySet="SFB_SIMULACION" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KP_finbankModelStoreContainer" CdmEntityContainer="KP_finbankEntities">
+          <EntitySetMapping Name="SFB_AMORTIZACION">
+            <EntityTypeMapping TypeName="KP_finbankModel.SFB_AMORTIZACION">
+              <MappingFragment StoreEntitySet="SFB_AMORTIZACION">
+                <ScalarProperty Name="SFB_AMO_ID" ColumnName="SFB_AMO_ID" />
+                <ScalarProperty Name="SFB_AMO_DESCRIPCION" ColumnName="SFB_AMO_DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SFB_INTERES">
+            <EntityTypeMapping TypeName="KP_finbankModel.SFB_INTERES">
+              <MappingFragment StoreEntitySet="SFB_INTERES">
+                <ScalarProperty Name="SFB_INT_ID" ColumnName="SFB_INT_ID" />
+                <ScalarProperty Name="SFB_INT_DESCRIPCION" ColumnName="SFB_INT_DESCRIPCION" />
+                <ScalarProperty Name="SFB_INT_VALOR" ColumnName="SFB_INT_VALOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SFB_SIMULACION">
+            <EntityTypeMapping TypeName="KP_finbankModel.SFB_SIMULACION">
+              <MappingFragment StoreEntitySet="SFB_SIMULACION">
+                <ScalarProperty Name="SFB_SIM_ID" ColumnName="SFB_SIM_ID" />
+                <ScalarProperty Name="SFB_AMO_ID" ColumnName="SFB_AMO_ID" />
+                <ScalarProperty Name="SFB_SOL_ID" ColumnName="SFB_SOL_ID" />
+                <ScalarProperty Name="SFB_SUC_ID" ColumnName="SFB_SUC_ID" />
+                <ScalarProperty Name="SFB_INT_ID" ColumnName="SFB_INT_ID" />
+                <ScalarProperty Name="SFB_USU_ID" ColumnName="SFB_USU_ID" />
+                <ScalarProperty Name="SFB_SIM_MONSOLICITADO" ColumnName="SFB_SIM_MONSOLICITADO" />
+                <ScalarProperty Name="SFB_SIM_PLAMESES" ColumnName="SFB_SIM_PLAMESES" />
+                <ScalarProperty Name="SFB_SIM_INTANUAL" ColumnName="SFB_SIM_INTANUAL" />
+                <ScalarProperty Name="SFB_SIM_CUAMENSUAL" ColumnName="SFB_SIM_CUAMENSUAL" />
+                <ScalarProperty Name="SFB_SIM_PAGTOTAL" ColumnName="SFB_SIM_PAGTOTAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SFB_SOLICITUD">
+            <EntityTypeMapping TypeName="KP_finbankModel.SFB_SOLICITUD">
+              <MappingFragment StoreEntitySet="SFB_SOLICITUD">
+                <ScalarProperty Name="SFB_SOL_ID" ColumnName="SFB_SOL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SFB_SUCURSAL">
+            <EntityTypeMapping TypeName="KP_finbankModel.SFB_SUCURSAL">
+              <MappingFragment StoreEntitySet="SFB_SUCURSAL">
+                <ScalarProperty Name="SFB_SUC_ID" ColumnName="SFB_SUC_ID" />
+                <ScalarProperty Name="SFB_SUC_DESCRIPCION" ColumnName="SFB_SUC_DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SFB_USUARIO">
+            <EntityTypeMapping TypeName="KP_finbankModel.SFB_USUARIO">
+              <MappingFragment StoreEntitySet="SFB_USUARIO">
+                <ScalarProperty Name="SFB_USU_ID" ColumnName="SFB_USU_ID" />
+                <ScalarProperty Name="SFB_USU_CEDULA" ColumnName="SFB_USU_CEDULA" />
+                <ScalarProperty Name="SFB_USU_NOMBRE" ColumnName="SFB_USU_NOMBRE" />
+                <ScalarProperty Name="SFB_USU_APELLIDO" ColumnName="SFB_USU_APELLIDO" />
+                <ScalarProperty Name="SFB_USU_EDAD" ColumnName="SFB_USU_EDAD" />
+                <ScalarProperty Name="SFB_USU_USUARIO" ColumnName="SFB_USU_USUARIO" />
+                <ScalarProperty Name="SFB_USU_PASSWORD" ColumnName="SFB_USU_PASSWORD" />
+                <ScalarProperty Name="SFB_USU_ESTADO" ColumnName="SFB_USU_ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

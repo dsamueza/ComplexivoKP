@@ -5,6 +5,7 @@ using System.Web;
 using KatherinePorras_FINBANK.Acceso_Dato.@base;
 using KatherinePorras_FINBANK.Modelo;
 using KatherinePorras_FINBANK.Infraestructra;
+using System.Data.Entity.Validation;
 
 namespace KatherinePorras_FINBANK.Acceso_Dato.transacciones
 {
@@ -28,8 +29,49 @@ namespace KatherinePorras_FINBANK.Acceso_Dato.transacciones
 
 
         }
+
+        public int InsertarUsuario(RegistroUsuarioModelo _modeloRegistraUsuario)
+        {
+            try
+            {
+                var _selectExisteUsuario = ctx.SFB_USUARIO.Where(x => x.SFB_USU_CEDULA.Equals(_modeloRegistraUsuario.CEDULA));
+                if (_selectExisteUsuario.Count() == 0) {
+                SFB_USUARIO _tb_sfb_usuario = new SFB_USUARIO();
+                _tb_sfb_usuario.SFB_USU_CEDULA = _modeloRegistraUsuario.CEDULA;
+                _tb_sfb_usuario.SFB_USU_NOMBRE = _modeloRegistraUsuario.NOMBRE;
+                _tb_sfb_usuario.SFB_USU_APELLIDO = _modeloRegistraUsuario.APELLIDO;
+                _tb_sfb_usuario.SFB_USU_EDAD = _modeloRegistraUsuario.fechaNacimiento;
+                _tb_sfb_usuario.SFB_USU_PASSWORD = _modeloRegistraUsuario.PassUsuario;
+                _tb_sfb_usuario.SFB_USU_USUARIO = _modeloRegistraUsuario.USUARIO;
+                _tb_sfb_usuario.SFB_USU_ESTADO =VariableConstante.usuarioCreado ;
+                ctx.SFB_USUARIO.Add(_tb_sfb_usuario);
+                ctx.SaveChanges();
+                    return 1;
+                }
+                return 2;
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+                return 0;
+            }
            
-               
-       
+            
+
+           
+
+
+        }
+
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using KatherinePorras_FINBANK.Acceso_Dato.transacciones;
 using KatherinePorras_FINBANK.Infraestructra;
+using KatherinePorras_FINBANK.Modelo;
 namespace KatherinePorras_FINBANK.Negocio
 {
 
@@ -11,6 +12,7 @@ namespace KatherinePorras_FINBANK.Negocio
     {
 
         private sfb_usuarioDOA _usuarioDao = new sfb_usuarioDOA();
+        private EnviaMail _enviarmail = new EnviaMail();
         /// <summary>
         /// Valida el usuario . Recupera el estado que tiene en ese momento el usuario logeado.
         /// </summary>
@@ -29,6 +31,23 @@ namespace KatherinePorras_FINBANK.Negocio
                 return _modeloObtenidoUsuario.estado == VariableConstante.usuarioActivo ? 1 : 3;
             }
             return 2;
+        }
+
+        public int CrearUsuario(RegistroUsuarioModelo _modeloRegistroUsuario)
+        {
+            var _insertoUsuario = _usuarioDao.InsertarUsuario(_modeloRegistroUsuario);
+            if (_insertoUsuario==1)
+            {
+                _enviarmail.MailConfirmacion(_modeloRegistroUsuario.USUARIO, "Pruebas");
+
+
+                return 1;
+            }
+            else {
+
+            return _insertoUsuario;
+            }
+            
         }
     }
 }

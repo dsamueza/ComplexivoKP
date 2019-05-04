@@ -78,7 +78,15 @@ namespace KatherinePorras_FINBANK.Controllers
 
         {
 
-            var _model = ModeloRegistroUsuario;
+            if (ModelState.IsValid) {
+                var _model = ModeloRegistroUsuario;
+                _model.PassUsuario = _encriptacion.Encriptar(_model.PassUsuarionew);
+                _usuarioBSS.CrearUsuario(_model);
+
+
+            }
+
+          
             return View();
         }
     }

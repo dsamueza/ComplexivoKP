@@ -11,7 +11,9 @@ namespace KatherinePorras_FINBANK.Controllers
         // GET: Cotizacion
         public ActionResult Index()
         {
-            ViewBag.estado = Session[CSession.Clogeado].ToString();
+           var idusuario  = Session[CSession.Clogeado].ToString();
+
+
             return View();
         }
 

@@ -8,11 +8,11 @@ using KatherinePorras_FINBANK.Modelo;
 namespace KatherinePorras_FINBANK.Negocio
 {
 
-    public  class UsuarioBSS
+    public  class UsuarioBSS: ABaseBss
     {
 
         private sfb_usuarioDOA _usuarioDao = new sfb_usuarioDOA();
-        private EnviaMail _enviarmail = new EnviaMail();
+       
         /// <summary>
         /// Valida el usuario . Recupera el estado que tiene en ese momento el usuario logeado.
         /// </summary>
@@ -28,17 +28,23 @@ namespace KatherinePorras_FINBANK.Negocio
             var _modeloObtenidoUsuario= _usuarioDao.UsuarioValido(usuario,contraseña);
             if (_modeloObtenidoUsuario != null) {
                
-                return _modeloObtenidoUsuario.estado == VariableConstante.usuarioActivo ? 1 : 3;
+                return _modeloObtenidoUsuario.estado == VariableConstante.usuarioActivo ? _modeloObtenidoUsuario.Idusario : -3;
             }
-            return 2;
+            return -2;
         }
-
+        /// <summary>
+        /// Creación de usuario o envio de mail
+        /// </summary>
+        /// <param name="_modeloRegistroUsuario"></param>
+        /// <returns></returns>
         public int CrearUsuario(RegistroUsuarioModelo _modeloRegistroUsuario)
         {
             var _insertoUsuario = _usuarioDao.InsertarUsuario(_modeloRegistroUsuario);
             if (_insertoUsuario==1)
             {
-                _enviarmail.MailConfirmacion(_modeloRegistroUsuario.USUARIO, "Pruebas");
+                var _resultadoUsuario=  _usuarioDao.UsuarioValido(_modeloRegistroUsuario.USUARIO, _modeloRegistroUsuario.PassUsuario);
+                var _idusuarioEncriptado = _encriptacion.Encriptar(_resultadoUsuario.Idusario.ToString());
+                _enviarmail.MailConfirmacion(_modeloRegistroUsuario.USUARIO, _idusuarioEncriptado);
 
 
                 return 1;
@@ -48,6 +54,15 @@ namespace KatherinePorras_FINBANK.Negocio
             return _insertoUsuario;
             }
             
+        }
+
+        public int CambiarEstadoUsuario(string id)
+        {
+            var iddesencriptado = _encriptacion.Desencriptar(id);
+
+            return  _usuarioDao.ActulizarUsuario(int.Parse(iddesencriptado));
+        
+           
         }
     }
 }

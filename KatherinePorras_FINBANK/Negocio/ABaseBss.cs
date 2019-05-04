@@ -5,13 +5,10 @@ using System.Web;
 using KatherinePorras_FINBANK.Infraestructra;
 namespace KatherinePorras_FINBANK.Negocio
 {
-    public abstract class IBaseBss
+    public abstract class ABaseBss
     {
-        int x
-        {
-            get;
-            set;
-        }
-     
+
+        public Encriptacion _encriptacion = new Encriptacion();
+        public EnviaMail _enviarmail = new EnviaMail();
     }
 }

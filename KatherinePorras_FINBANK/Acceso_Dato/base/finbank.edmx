@@ -58,7 +58,7 @@
           <Property Name="SFB_USU_NOMBRE" Type="varchar" MaxLength="50" />
           <Property Name="SFB_USU_APELLIDO" Type="varchar" MaxLength="50" />
           <Property Name="SFB_USU_EDAD" Type="datetime" />
-          <Property Name="SFB_USU_USUARIO" Type="varchar" MaxLength="20" />
+          <Property Name="SFB_USU_USUARIO" Type="varchar" MaxLength="100" />
           <Property Name="SFB_USU_PASSWORD" Type="varchar" MaxLength="100" />
           <Property Name="SFB_USU_ESTADO" Type="char" MaxLength="1" />
         </EntityType>
@@ -216,7 +216,7 @@
           <Property Name="SFB_USU_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SFB_USU_APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SFB_USU_EDAD" Type="DateTime" Precision="3" />
-          <Property Name="SFB_USU_USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SFB_USU_USUARIO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="SFB_USU_PASSWORD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="SFB_USU_ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="SFB_SIMULACION" Relationship="Self.FK_SFB_SIMU_RELATIONS_SFB_USUA" FromRole="SFB_USUARIO" ToRole="SFB_SIMULACION" />

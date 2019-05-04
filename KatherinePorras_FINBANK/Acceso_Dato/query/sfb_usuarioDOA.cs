@@ -19,7 +19,7 @@ namespace KatherinePorras_FINBANK.Acceso_Dato.transacciones
             var _usuario = ctx.SFB_USUARIO.Where(x => x.SFB_USU_USUARIO == usuario && x.SFB_USU_PASSWORD == contraseña);
             if (usuario.Count() > 0)
             {
-                return _usuario.ToList().Select(x => new Login { contraseña = x.SFB_USU_PASSWORD, mail = x.SFB_USU_USUARIO,estado=x.SFB_USU_ESTADO }).FirstOrDefault();
+                return _usuario.ToList().Select(x => new Login { contraseña = x.SFB_USU_PASSWORD, mail = x.SFB_USU_USUARIO,estado=x.SFB_USU_ESTADO,Idusario=x.SFB_USU_ID }).FirstOrDefault();
 
             }
             else
@@ -62,13 +62,34 @@ namespace KatherinePorras_FINBANK.Acceso_Dato.transacciones
                             ve.PropertyName, ve.ErrorMessage);
                     }
                 }
-                throw;
+           
                 return 0;
             }
            
             
 
            
+
+
+        }
+
+        public int ActulizarUsuario(int id)
+        {
+
+
+            var _usuario = ctx.SFB_USUARIO.Where(x => x.SFB_USU_ID.Equals(id));
+            if (_usuario.Count() > 0)
+            {
+                var _datoActualizar= _usuario.FirstOrDefault() ;
+                _datoActualizar.SFB_USU_ESTADO = "A";
+                ctx.Entry(_datoActualizar).State = System.Data.Entity.EntityState.Modified;
+                ctx.SaveChanges();
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
 
 
         }

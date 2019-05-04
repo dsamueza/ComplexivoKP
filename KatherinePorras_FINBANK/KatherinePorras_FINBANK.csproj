@@ -204,8 +204,10 @@
     <Compile Include="Infraestructra\EnviaMail.cs" />
     <Compile Include="Infraestructra\VariableConstante.cs" />
     <Compile Include="Modelo\Login.cs" />
+    <Compile Include="Modelo\ModeloCotizacion.cs" />
     <Compile Include="Modelo\RegistroUsuarioModelo.cs" />
-    <Compile Include="Negocio\IBaseBss.cs" />
+    <Compile Include="Negocio\ABaseBss.cs" />
+    <Compile Include="Negocio\CotizacionBss.cs" />
     <Compile Include="Negocio\UsuarioBSS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -224,6 +226,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\image\finbank.png" />
+    <Content Include="Content\vue_modelo\CotizacionModeloVue.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -251,6 +255,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\vue.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -270,6 +275,9 @@
     <Content Include="Views\Login\RegistroUsuario.cshtml" />
     <Content Include="Views\Cotizacion\Index.cshtml" />
     <Content Include="Views\Login\RegistroUsuarioV.cshtml" />
+    <Content Include="Views\Login\CreacionCuenta.cshtml" />
+    <Content Include="Views\Shared\_LayoutFinBank.cshtml" />
+    <Content Include="Views\Cotizacion\_datosAmortizacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

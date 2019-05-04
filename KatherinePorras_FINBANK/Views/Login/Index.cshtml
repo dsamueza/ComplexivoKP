@@ -8,8 +8,10 @@
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="#"><b><strong>FINBANK</strong></b>
-    </div>
+        <a href="#">
+    
+            <img src="~/Content/image/finbank.png"    style=" width: 100px;" />
+</div>
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
@@ -42,7 +44,7 @@
             <!-- /.social-auth-links -->
             <p class="mb-0">
                 <a href="register.html" class="text-center"></a>
-                <a class="fa fa-envelope" href="@Url.Action("RegistroUsuario", "Login")">Registrate!</a>
+                <a  href="@Url.Action("RegistroUsuario", "Login")">Registrate!</a>
             </p>
             @if (ViewBag.mensajeLogin != "") {
             <div class="row">

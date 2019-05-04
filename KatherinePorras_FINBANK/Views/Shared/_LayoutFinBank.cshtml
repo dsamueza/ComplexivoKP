@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/Plugins/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/Plugins/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/Content/Plugins/plugins/iCheck/square/blue.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <style>
+        .sidebar-mini {
+            background: #d2cec9de !important;
+        }
+
+            .sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .main-footer, .sidebar-mini.sidebar-collapse .main-header {
+            }
+    </style>
+    <title>@ViewBag.Title</title>
+</head>
+<body class="sidebar-mini control-sidebar-slide-open sidebar-collapse">
+    <div class="wrapper">
+        <nav class="main-header navbar navbar-expand border-bottom navbar-light bg-warning" style="margin-left: 1px!important; ">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+
+                <li class="nav-item d-none d-sm-inline-block">
+                    <img src="~/Content/image/finbank.png" style="width: 45px;" />
+
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link"><strong>Modulo de Amortización</strong></a>
+                </li>
+            </ul>
+
+            <!-- SEARCH FORM -->
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Messages Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user" style="font-size=100% !important"></i>
+
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="~/Content/Plugins/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        John Pierce
+                                        <span class="float-right text-sm text-muted"><i class="fa fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">I got your message bro</p>
+                                    <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                    </div>
+                </li>
+
+
+            </ul>
+        </nav>
+
+        <div class="content">
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </div>
+
+        <!-- /.control-sidebar -->
+        <!-- Main Footer -->
+        <footer class="main-footer " style="margin-left: 1px!important; ">
+            <!-- To the right -->
+            <div class="float-right d-none d-sm-block-down">
+                Anything you want
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2018 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+        </footer>
+    </div>
+    <!-- jQuery -->
+    <script src="~/Content/Plugins/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Content/Plugins/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- iCheck -->
+    <!-- AdminLTE -->
+    <script src="~/Content/Plugins/dist/js/adminlte.js"></script>
+    <script src="~/Content/Plugins/plugins/iCheck/icheck.min.js"></script>
+    @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>*@
+    <script src="~/Scripts/vue.js"></script>
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            })
+        })</script>
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

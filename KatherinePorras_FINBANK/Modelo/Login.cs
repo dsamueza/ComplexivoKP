@@ -19,5 +19,7 @@ namespace KatherinePorras_FINBANK.Modelo
         [DisplayName("Ingrese su password")]
         public string contraseña { get; set; }
         public string estado { get; set; }
+
+        public int Idusario { get; set; }
     }
 }

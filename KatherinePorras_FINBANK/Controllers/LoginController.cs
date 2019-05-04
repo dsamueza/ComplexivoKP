@@ -41,15 +41,16 @@ namespace KatherinePorras_FINBANK.Controllers
             if (ModelState.IsValid) {
                 var _valorcontraseñaEncríptado=_encriptacion.Encriptar(ModeloLogin.contraseña);
                 var _result=_usuarioBSS.ValidarUsuario(ModeloLogin.mail,_valorcontraseñaEncríptado);
-                switch (_result)
+                var _sw_auxiliar = _result > 0?1: _result;
+                switch (_sw_auxiliar)
                 {
                     case 1:
-                        Session[CSession.Clogeado]="Correcto";
+                        Session[CSession.Clogeado]= _result;
                         return RedirectToAction("Index", "Cotizacion");
-                       case 2:
+                       case -2:
                         ViewBag.mensajeLogin = "Usuario o contraseña Incorrecto ";
                         break;
-                    case 3:
+                    case -3:
                         ViewBag.mensajeLogin = "El usuario no se encuentra activo. Favor la confirmación enviada a su mail.";
                         break;
                     default:
@@ -81,12 +82,23 @@ namespace KatherinePorras_FINBANK.Controllers
             if (ModelState.IsValid) {
                 var _model = ModeloRegistroUsuario;
                 _model.PassUsuario = _encriptacion.Encriptar(_model.PassUsuarionew);
-                _usuarioBSS.CrearUsuario(_model);
-
-
+                var _result= _usuarioBSS.CrearUsuario(_model);
+                return RedirectToAction("CreacionCuenta", "Login", new { Nombre = (ModeloRegistroUsuario.NOMBRE + " " + ModeloRegistroUsuario.APELLIDO), status = _result });
             }
 
           
+            return View();
+        }
+
+        public ActionResult ConfirmacionCuenta( string key)
+        {
+            _usuarioBSS.CambiarEstadoUsuario(key);
+            return RedirectToAction("Index", "Login");
+        }
+        public ActionResult CreacionCuenta(string Nombre  , int  status)
+        {
+            ViewBag.datosUsuario = Nombre;
+            ViewBag.estado = status;
             return View();
         }
     }

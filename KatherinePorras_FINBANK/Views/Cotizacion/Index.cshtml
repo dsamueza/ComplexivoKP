@@ -1,7 +1,31 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutFinBank.cshtml";
 }
+<div class="row">
+    <div class="col-lg-4">
+        <div class="register-box">
+            <div class="card">
+                <div class="card-body register-card-body">
 
-<h2>  @ViewBag.estado</h2>
+                    <div id="idvue">
+                        {{ message }}
+                    </div>
+                </div>
 
+            </div>
+
+        </div>
+    </div>
+    <div class="col-lg-8 md-1 mt-3">
+        @Html.Partial("_datosAmortizacion")
+    </div>
+</div>
+@section scripts{
+    <script src="~/Content/vue_modelo/CotizacionModeloVue.js"></script>
+    <script>
+
+
+    </script>
+}

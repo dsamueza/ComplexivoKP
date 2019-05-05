@@ -74,6 +74,7 @@ namespace KatherinePorras_FINBANK.Controllers
               
                 //int usuarioId = int.Parse(id);
                 var _modelovueData = _cotizacionBss._RealizarCalculoAmortizacion(_modelovue);
+                _cotizacionBss._GestionGuardarAmortizacion(_modelovue, _modelovueData);
                 return Json(_modelovueData, JsonRequestBehavior.AllowGet);
             }
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using KatherinePorras_FINBANK.Acceso_Dato.query;
+using System.Threading.Tasks;
 
 namespace KatherinePorras_FINBANK.Negocio
 {
@@ -71,8 +72,41 @@ namespace KatherinePorras_FINBANK.Negocio
            
                     break;
                 case 2 :
-                   
-                break;
+
+                    if (_ModelInteresAnual.Count() > 0)
+                    {
+                        double interesMesual = (double)((_ModelInteresAnual.First().Monto / 12) / 100);
+                        var capital = (_modelosolicitud.monto) / (_modelosolicitud.plazo);
+                        var interes = (_modelosolicitud.monto) * (interesMesual);
+                        var PrimeraCuota = capital + interes;
+                        _tb_modelocaluloamortizacion.primeracuota = PrimeraCuota;
+                        _tb_modelocaluloamortizacion.interes = _ModelInteresAnual.First().Monto;
+                        _tb_modelocaluloamortizacion.ListaDatosAmortizacion = new List<ModeloTablaAmortizacion>();
+                        var _montodeuda = _modelosolicitud.monto;
+
+                        for (int i = 0; i < _modelosolicitud.plazo; i++)
+                        {
+
+                            var _montoActual = _montodeuda;
+                            _tb_modelocaluloamortizacion
+                                .ListaDatosAmortizacion
+                                .Add(new ModeloTablaAmortizacion
+                                {
+                                    mumeroPago = (i + 1),
+                                    capital = Math.Round((capital), 2),
+                                    Saldo = Math.Round((_montoActual - capital), 2),
+                                    cuota = Math.Round(capital + (_montoActual * interesMesual), 2),
+                                    interes = Math.Round((_montoActual * interesMesual), 2),
+
+                                });
+                            _montodeuda = _montoActual - capital;
+
+                        }
+
+
+                    }
+
+                    break;
                
             }
             _tb_modelocaluloamortizacion.Pagototal = Math.Round(((_tb_modelocaluloamortizacion.ListaDatosAmortizacion.Select(b => b.interes).Sum())+_modelosolicitud.monto),2);
@@ -80,6 +114,10 @@ namespace KatherinePorras_FINBANK.Negocio
             return _tb_modelocaluloamortizacion;
         }
 
+        public int _GestionGuardarAmortizacion(ModeloCotizacion _modelosolicitud , ModeloCalculoAmortizacion _modeloAmortizacion)
+        {
 
+            return _sfb_amortizacionDao.GuardadoDatosAmortizacion(_modelosolicitud, _modeloAmortizacion);
+        }
     }
 }

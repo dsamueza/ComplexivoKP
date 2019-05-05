@@ -73,6 +73,20 @@
     <script>
             var IdTask = '@Html.Raw(IdRegister)';
             LoadCotizacionById(IdTask);
+        function printDiv() {
+            alert()
+            var divToPrint = document.getElementById('DivIdToPrint');
 
+            var newWin = window.open('', 'Print-Window');
+
+            newWin.document.open();
+
+            newWin.document.write('<html><body onload="window.print()" style="width:100px>' + divToPrint.innerHTML + '</body></html>');
+
+            newWin.document.close();
+
+            setTimeout(function () { newWin.close(); }, 10);
+
+        }
     </script>
 }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using KatherinePorras_FINBANK.Modelo;
+using System.Threading.Tasks;
+
 namespace KatherinePorras_FINBANK.Acceso_Dato.query
 {
    
@@ -94,6 +96,35 @@ namespace KatherinePorras_FINBANK.Acceso_Dato.query
             {
                 return null;
             }
+        }
+
+        public int GuardadoDatosAmortizacion(ModeloCotizacion _modeloSolicitud , ModeloCalculoAmortizacion  _modelAmortizacion)
+        {
+
+            try
+            {
+                
+                    var sentenciaSQL = $@"EXEC sp_insertar_simulacionCredito @AMO_ID = {_modeloSolicitud.idamortizacion}
+								                                          ,@SUC_ID = {_modeloSolicitud.idsucursal}
+								                                          ,@INT_ID = {_modeloSolicitud.idinteres}
+								                                          ,@USU_ID = {_modeloSolicitud.idusuario}
+								                                          ,@SIM_MONSOLICITADO ='{_modeloSolicitud.monto.ToString().Replace(',','.')}'
+								                                          ,@SIM_PLAMESES = '{_modeloSolicitud.plazo.ToString().Replace(',', '.')}'
+								                                          ,@SIM_INTANUAL = '{_modelAmortizacion.interes.ToString().Replace(',', '.')}'
+								                                          ,@SIM_CUAMENSUAL = '{_modelAmortizacion.primeracuota.ToString().Replace(',', '.')}'
+								                                          ,@SIM_PAGTOTAL = '{_modelAmortizacion.Pagototal.ToString().Replace(',', '.')}'";
+                    var resultProc = ctx.Database.SqlQuery<int>(sentenciaSQL).ToList();
+
+                    return resultProc.First();
+                
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+           
+           
         }
     }
 }

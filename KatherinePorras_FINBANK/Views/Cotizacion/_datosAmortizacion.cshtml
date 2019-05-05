@@ -1,118 +1,121 @@
 ﻿<!-- Main content -->
 <div class="invoice p-3 mb-3">
-    <!-- title row -->
-    <div class="row">
-        <div class="col-12">
-            <h4>
-                <i class="fa fa-globe"></i> Finbank, Inc.
-                <small class="float-right">Date: 2/10/2014</small>
-            </h4>
-        </div>
-        <!-- /.col -->
-    </div>
-    <!-- info row -->
-    <div class="row invoice-info">
-        <div class="col-sm-4 invoice-col">
-            De
-            <address>
-                <strong>{{datovue.nombre }}.</strong><br>
-                Cedula: {{datovue.cedula }}<br>
-                Email: {{datovue.Mail }}
-            </address>
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-4 invoice-col">
-            To
-            <address>
-                <strong>FINBANK</strong><br>
-                SJ Carapungo, 104BX<br>
-                Número: (593) 9874-17744<br>
-                Email: katy095.kp@gmail.com
-            </address>
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-4 invoice-col">
-            <b>N Solicitud #{{datovue.id}}</b><br>
-            <br>
-            <b>Payment Due:</b> 2/22/2014<br>
-        </div>
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->
-    <!-- Table row -->
-    <div v-if="estadoEnviado">
+    <div id="DivIdToPrint" >
+        <!-- title row -->
         <div class="row">
-            <div class="col-12 table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Pago#</th>
-                            <th>Cuota</th>
-                            <th>Interés</th>
-                            <th>Capital</th>
-                            <th>Saldo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(item, i) in tablaAmortizacion">
-                            <td>{{item.mumeroPago}}</td>
-                            <td>${{item.cuota}}</td>
-                            <td>${{item.interes}}</td>
-                            <td>${{item.capital}}</td>
-                            <td>${{item.Saldo}}</td>
-
-                        </tr>
-                        
-                    </tbody>
-                </table>
+            <div class="col-12">
+                <h4>
+                    <i class="fa fa-globe"></i> Finbank, Inc.
+                    <small class="float-right">Date: 2/10/2014</small>
+                </h4>
             </div>
             <!-- /.col -->
         </div>
-    <!-- /.row -->
-    <div class="row">
-        <!-- accepted payments column -->
-        <div class="col-6">
-
+        <!-- info row -->
+        <div class="row invoice-info">
+            <div class="col-sm-4 invoice-col">
+                De
+                <address>
+                    <strong>{{datovue.nombre }}.</strong><br>
+                    Cedula: {{datovue.cedula }}<br>
+                    Email: {{datovue.Mail }}
+                </address>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+                To
+                <address>
+                    <strong>FINBANK</strong><br>
+                    SJ Carapungo, 104BX<br>
+                    Número: (593) 9874-17744<br>
+                    Email: katy095.kp@gmail.com
+                </address>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+                <b>N Solicitud #{{datovue.id}}</b><br>
+                <br>
+                <b>Payment Due:</b> 2/22/2014<br>
+            </div>
+            <!-- /.col -->
         </div>
-        <!-- /.col -->
-        <div class="col-6">
-            <p class="lead">Detalle del préstamo</p>
-            <div class="table-responsive">
-                <table class="table">
-                    <tr>
-                        <th style="width:50%">Monto solicitado:</th>
-                        <td>{{datovue.monto}}</td>
-                    </tr>
-                    <tr>
-                        <th>Plazo en meses</th>
-                        <td>{{datovue.plazo}}</td>
-                    </tr>
-                    <tr>
-                        <th>Interés anual</th>
-                        <td>{{interes}}%</td>
-                    </tr>
-                    <tr>
-                        <th>Cuota mensual</th>
-                        <td>{{primeracuota}}</td>
-                    </tr>
-                    <tr>
-                        <th>Pago total</th>
-                        <td>{{totalDeuda}}</td>
-                    </tr>
-                </table>
+        <!-- /.row -->
+        <!-- Table row -->
+        <div v-if="estadoEnviado">
+            <div class="row">
+                <div class="col-12 table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Pago#</th>
+                                <th>Cuota</th>
+                                <th>Interés</th>
+                                <th>Capital</th>
+                                <th>Saldo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item, i) in tablaAmortizacion">
+                                <td>{{item.mumeroPago}}</td>
+                                <td>${{item.cuota}}</td>
+                                <td>${{item.interes}}</td>
+                                <td>${{item.capital}}</td>
+                                <td>${{item.Saldo}}</td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <!-- accepted payments column -->
+                <div class="col-6">
+
+                </div>
+                <!-- /.col -->
+                <div class="col-6">
+                    <p class="lead">Detalle del préstamo</p>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th style="width:50%">Monto solicitado:</th>
+                                <td>{{datovue.monto}}</td>
+                            </tr>
+                            <tr>
+                                <th>Plazo en meses</th>
+                                <td>{{datovue.plazo}}</td>
+                            </tr>
+                            <tr>
+                                <th>Interés anual</th>
+                                <td>{{interes}}%</td>
+                            </tr>
+                            <tr>
+                                <th>Cuota mensual</th>
+                                <td>{{primeracuota}}</td>
+                            </tr>
+                            <tr>
+                                <th>Pago total</th>
+                                <td>{{totalDeuda}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.col -->
             </div>
         </div>
-        <!-- /.col -->
     </div>
-    <!-- /.row -->
-    <!-- this row will not appear when printing -->
-    <div class="row no-print">
-        <div class="col-12">
+            <!-- /.row -->
+            <!-- this row will not appear when printing -->
+            <div class="row no-print">
+                <div class="col-12">
 
-            <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                <i class="fa fa-download"></i> Generate PDF
-            </button>
+                    <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;" onclick='printDiv();'>
+                        <i class="fa fa-download"></i> Generate PDF
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>

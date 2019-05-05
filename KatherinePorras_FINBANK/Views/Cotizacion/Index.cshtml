@@ -1,31 +1,78 @@
-﻿
+﻿@using KatherinePorras_FINBANK.Infraestructra
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutFinBank.cshtml";
 }
-<div class="row">
-    <div class="col-lg-4">
-        <div class="register-box">
-            <div class="card">
-                <div class="card-body register-card-body">
+@{
+    var IdRegister = (string)ViewData[CSession.CIdusuario];
 
-                    <div id="idvue">
-                        {{ message }}
+}
+
+<div id="idvue">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="register-box">
+                <div class="card">
+                    <div class="card-body register-card-body">
+                        <strong>Sucursal</strong>
+
+                        <select id="selSucursal" v-model="datovue.idsucursal" class="form-control input-sm"
+                                asp-items=" @ViewBag.sucursal">
+                            <option value="0">Seleccione uno</option>
+                            @foreach (var i in ViewBag.sucursal)
+                            {
+
+                                <option value="@i.Value"> @i.Text</option>
+                            }
+                        </select>
+
+                        <strong>Interes(Anual)</strong>
+
+                        <select id="selInteres" v-model="datovue.idinteres" class="form-control input-sm">
+                            <option value="0">Selecione uno</option>
+                            @foreach (var i in ViewBag.interes)
+                            {
+
+                                <option value="@i.Value"> @i.Text</option>
+                            }
+                        </select>
+
+                        <strong>Amortizacion</strong>
+
+                        <select id="selAmortizacion" v-model="datovue.idamortizacion" class="form-control input-sm">
+                            <option value="0">Selecione uno</option>
+                            @foreach (var i in ViewBag.amortizacion)
+                            {
+
+                                <option value="@i.Value"> @i.Text</option>
+                            }
+                        </select>
+
+                        <strong>Monto</strong>
+                        <input type="number" step="2" class="form-control input-sm" v-model="datovue.monto" placeholder="Ingrese el monto de prestamo">
+
+                        <strong>Plazo</strong>
+                        <input type="number" class="form-control input-sm" v-model="datovue.plazo" placeholder="Ingrese los plazos">
+
+                        <button type="button"  :disabled="Chequeoformulario(this) == 1" v-on:click="GuardarSolicitud" class="btn btn-block btn-warning btn-flat mt-4">Generar</button>
+
+                        @*<pre>{{datovue}}</pre>*@
                     </div>
+
                 </div>
 
             </div>
-
         </div>
-    </div>
-    <div class="col-lg-8 md-1 mt-3">
-        @Html.Partial("_datosAmortizacion")
+        <div class="col-lg-8 md-1 mt-3">
+            @Html.Partial("_datosAmortizacion")
+        </div>
     </div>
 </div>
 @section scripts{
     <script src="~/Content/vue_modelo/CotizacionModeloVue.js"></script>
     <script>
-
+            var IdTask = '@Html.Raw(IdRegister)';
+            LoadCotizacionById(IdTask);
 
     </script>
 }

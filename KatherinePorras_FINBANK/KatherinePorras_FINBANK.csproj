@@ -188,7 +188,8 @@
     <Compile Include="Acceso_Dato\base\SFB_USUARIO.cs">
       <DependentUpon>finbank.tt</DependentUpon>
     </Compile>
-    <Compile Include="Acceso_Dato\query\IBaseDAO.cs" />
+    <Compile Include="Acceso_Dato\query\ABaseDAO.cs" />
+    <Compile Include="Acceso_Dato\query\sfb_amortizacionDAO.cs" />
     <Compile Include="Acceso_Dato\query\sfb_usuarioDOA.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -204,7 +205,10 @@
     <Compile Include="Infraestructra\EnviaMail.cs" />
     <Compile Include="Infraestructra\VariableConstante.cs" />
     <Compile Include="Modelo\Login.cs" />
+    <Compile Include="Modelo\ModeloCalculoAmortizacion.cs" />
     <Compile Include="Modelo\ModeloCotizacion.cs" />
+    <Compile Include="Modelo\ModeloSeleccionCatalogo.cs" />
+    <Compile Include="Modelo\ModeloTablaAmortizacion.cs" />
     <Compile Include="Modelo\RegistroUsuarioModelo.cs" />
     <Compile Include="Negocio\ABaseBss.cs" />
     <Compile Include="Negocio\CotizacionBss.cs" />
@@ -249,6 +253,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

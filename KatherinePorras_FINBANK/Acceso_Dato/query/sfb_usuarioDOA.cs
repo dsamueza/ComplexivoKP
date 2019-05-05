@@ -9,7 +9,7 @@ using System.Data.Entity.Validation;
 
 namespace KatherinePorras_FINBANK.Acceso_Dato.transacciones
 {
-    public class sfb_usuarioDOA: IBaseDAO
+    public class sfb_usuarioDOA: ABaseDAO
     {
 
         public Login UsuarioValido(string usuario, string contraseña)
@@ -93,6 +93,9 @@ namespace KatherinePorras_FINBANK.Acceso_Dato.transacciones
 
 
         }
+
+
+      
 
     }
 }

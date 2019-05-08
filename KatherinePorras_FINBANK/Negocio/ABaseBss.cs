@@ -10,5 +10,6 @@ namespace KatherinePorras_FINBANK.Negocio
 
         public Encriptacion _encriptacion = new Encriptacion();
         public EnviaMail _enviarmail = new EnviaMail();
+        public GeneradorPDF _generadorPDF = new GeneradorPDF();
     }
 }

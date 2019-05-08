@@ -1,7 +1,9 @@
 ﻿@using KatherinePorras_FINBANK.Infraestructra
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutFinBank.cshtml";
+                /**/
+
+                ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/_LayoutFinBank.cshtml";
 }
 @{
     var IdRegister = (string)ViewData[CSession.CIdusuario];
@@ -54,7 +56,7 @@
                         <strong>Plazo</strong>
                         <input type="number" class="form-control input-sm" v-model="datovue.plazo" placeholder="Ingrese los plazos">
 
-                        <button type="button"  :disabled="Chequeoformulario(this) == 1" v-on:click="GuardarSolicitud" class="btn btn-block btn-warning btn-flat mt-4">Generar</button>
+                        <button type="button" :disabled="Chequeoformulario(this) == 1" v-on:click="GuardarSolicitud" class="btn btn-block btn-warning btn-flat mt-4">Generar</button>
 
                         @*<pre>{{datovue}}</pre>*@
                     </div>
@@ -86,6 +88,11 @@
             newWin.document.close();
 
             setTimeout(function () { newWin.close(); }, 10);
+
+        }
+        function UploadFilesNew() {
+            $.blockUI({ message: "Generando el PDF" });
+            reportPrint()
 
         }
     </script>

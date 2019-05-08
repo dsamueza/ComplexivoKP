@@ -1,6 +1,6 @@
 ﻿<!-- Main content -->
 <div class="invoice p-3 mb-3">
-    <div id="DivIdToPrint" >
+    <div id="DivIdToPrint">
         <!-- title row -->
         <div class="row">
             <div class="col-12">
@@ -36,6 +36,7 @@
                 <b>N Solicitud #{{datovue.id}}</b><br>
                 <br>
                 <b>Payment Due:</b> 2/22/2014<br>
+           
             </div>
             <!-- /.col -->
         </div>
@@ -107,15 +108,15 @@
             </div>
         </div>
     </div>
-            <!-- /.row -->
-            <!-- this row will not appear when printing -->
-            <div class="row no-print">
-                <div class="col-12">
+    <!-- /.row -->
+    <!-- this row will not appear when printing -->
+    <div class="row no-print">
+        <div class="col-12">
 
-                    <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;" onclick='printDiv();'>
-                        <i class="fa fa-download"></i> Generate PDF
-                    </button>
-                </div>
-            </div>
+            <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;" onclick='UploadFilesNew();'>
+                <i class="fa fa-download"></i> Generate PDF
+            </button>
         </div>
+    </div>
+</div>
     </div>

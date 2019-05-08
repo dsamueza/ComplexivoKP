@@ -119,5 +119,10 @@ namespace KatherinePorras_FINBANK.Negocio
 
             return _sfb_amortizacionDao.GuardadoDatosAmortizacion(_modelosolicitud, _modeloAmortizacion);
         }
+        public string _GeneradoraPDF(string path,ModeloCotizacion _modelosolicitud, ModeloCalculoAmortizacion _modeloAmortizacion)
+        {
+
+            return _generadorPDF.PrintFile(path,_modelosolicitud, _modeloAmortizacion);
+        }
     }
 }

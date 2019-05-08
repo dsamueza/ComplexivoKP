@@ -1,6 +1,6 @@
 ﻿
 function LoadCotizacionById(idCotizacion) {
-    $.blockUI({ message: "cargando..."+idCotizacion });
+    $.blockUI({ message: "cargando..." + idCotizacion });
     $.ajax({
         type: "GET",
         url: "/Cotizacion/Get",
@@ -37,16 +37,16 @@ function LoadCotizacionByIdVue(_modelo) {
             estadoEnviado: false,
             validated: 0,
             interes: 0,
-            primeracuota:0,
+            primeracuota: 0,
             tablaAmortizacion: null,
-            totalDeuda:0
+            totalDeuda: 0
         },
         methods: {
             Chequeoformulario: function (e) {
                 var control = 1;
                 if (this.datovue.idsucursal > 0 && this.datovue.idinteres > 0
                     && this.datovue.idamortizacion > 0 && this.datovue.monto > 0
-                    && this.datovue.plazo > 0 ) {
+                    && this.datovue.plazo > 0) {
                     control = 0;
                 }
                 return control;
@@ -55,17 +55,17 @@ function LoadCotizacionByIdVue(_modelo) {
             GuardarSolicitud: function () {
                 CalcularTablaAmortizacion();
                 this.estadoEnviado = true;
-                
+
 
             }
         }
 
     })
-    
+
 
 }
-function CalcularTablaAmortizacion(){
-    $.blockUI({ message: "cargando..."  });
+function CalcularTablaAmortizacion() {
+    $.blockUI({ message: "cargando..." });
     $.ajax({
         type: "GET",
         url: "/Cotizacion/Calcular",
@@ -80,6 +80,7 @@ function CalcularTablaAmortizacion(){
             vue_datos.$data.interes = data.interes;
             vue_datos.$data.primeracuota = data.primeracuota;
             vue_datos.$data.totalDeuda = data.Pagototal;
+            vue_datos.$data.datovue.id = data.idSolicitud;
             $.unblockUI();
         },
         error: function (error) {
@@ -91,3 +92,31 @@ function CalcularTablaAmortizacion(){
     });
 
 }
+function reportPrint() {
+    $.blockUI({ message: "cargando..." });
+    $.ajax({
+        type: "GET",
+        url: "/Cotizacion/PDF",
+        // async: false,
+        data: {
+            _modeloSolicitudCliente: JSON.stringify(vue_datos.$data.datovue),
+     
+        },
+        success: function (data) {
+
+
+           location.href = data;  
+  
+            $.unblockUI();
+    
+        },
+        error: function (error) {
+            console.log(error);
+            alert("Error! no se ha encontrado el usuario" + error);
+            $.unblockUI();
+
+        }
+    });
+
+}
+

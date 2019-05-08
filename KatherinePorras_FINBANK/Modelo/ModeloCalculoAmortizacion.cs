@@ -8,6 +8,7 @@ namespace KatherinePorras_FINBANK.Modelo
     public class ModeloCalculoAmortizacion
     {
 
+        public int idSolicitud { get; set; }
         public double? interes { get; set; }
         public double primeracuota { get; set; }
         public double Pagototal { get; set; }

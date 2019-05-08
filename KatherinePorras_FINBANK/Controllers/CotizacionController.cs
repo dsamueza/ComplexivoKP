@@ -74,8 +74,25 @@ namespace KatherinePorras_FINBANK.Controllers
               
                 //int usuarioId = int.Parse(id);
                 var _modelovueData = _cotizacionBss._RealizarCalculoAmortizacion(_modelovue);
-                _cotizacionBss._GestionGuardarAmortizacion(_modelovue, _modelovueData);
+                var idamortizacion= _cotizacionBss._GestionGuardarAmortizacion(_modelovue, _modelovueData);
+                _modelovueData .idSolicitud= idamortizacion;
                 return Json(_modelovueData, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json("");
+        }
+
+        public JsonResult PDF(string _modeloSolicitudCliente)
+        {
+
+            if (_modeloSolicitudCliente != null)
+            {
+                var _modelovue = JsonConvert.DeserializeObject<ModeloCotizacion>(_modeloSolicitudCliente);
+                var path = Server.MapPath("~/");
+                //int usuarioId = int.Parse(id);
+                var _modelovueData = _cotizacionBss._RealizarCalculoAmortizacion(_modelovue);
+              var outs=  _cotizacionBss._GeneradoraPDF(path, _modelovue, _modelovueData);
+                return Json(outs, JsonRequestBehavior.AllowGet);
             }
 
             return Json("");
